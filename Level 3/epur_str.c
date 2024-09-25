@@ -40,16 +40,15 @@ int main(int argc, char **argv)
 		{
 			while (argv[1][main_string] == ' ' || argv[1][main_string] == '\t')
 				main_string++;
-			while (argv[1][main_string] != ' ' && argv[1][main_string] != '\t')
+			while (argv[1][main_string] != ' ' && argv[1][main_string] != '\t' && argv[1][main_string] != '\0')
 			{
 				write (1, &argv[1][main_string], 1);
 				main_string++;
 			}
-			if (argv[1][main_string] == ' ' || argv[1][main_string] == '\t')
-			{
-				write (1, " ", 1);
+			while (argv[1][main_string] == ' ' || argv[1][main_string] == '\t')
 				main_string++;
-			}
+			if (argv[1][main_string] != ' ' && argv[1][main_string] != '\t' && argv[1][main_string] != '\0')
+				write (1, " ", 1);
 		}
 	}
 	write (1, "\n", 1);

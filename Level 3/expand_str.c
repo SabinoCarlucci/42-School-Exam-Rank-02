@@ -41,17 +41,18 @@ int main (int argc, char **argv)
 		{
 			while (argv[1][i] == ' ' || argv[1][i] == '\t')
 				i++;
-			while (argv[1][i] != ' ' && argv[1][i] != '\t')
+			while (argv[1][i] != ' ' && argv[1][i] != '\t' && argv[1][i] != '\0')
 			{
 				write (1, &argv[1][i], 1);
 				i++;
 			}
-			if (argv[1][i] == ' ' || argv[1][i] == '\t')
+			while (argv[1][i] == ' ' || argv[1][i] == '\t')
+				i++;
+			if (argv[1][i] != ' ' && argv[1][i] != '\t' && argv[1][i] != '\0')
 			{
 				write (1, " ", 1);
 				write (1, " ", 1);
 				write (1, " ", 1);
-				i++;
 			}
 		}
 	}

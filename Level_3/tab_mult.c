@@ -40,3 +40,62 @@ $>./tab_mult | cat -e
 $
 $>
  */
+
+#include <unistd.h>
+
+int ft_atoi(char *num)
+{
+	int count = 0;
+	int out = 0;
+	while (num[count])
+	{
+		out = out * 10;
+		out = out + (num[count] - '0');
+		count++;
+	}
+	return (out);
+	//forse parsing
+}
+
+void ft_put_char(char c)
+{
+	write(1, &c, 1);
+}
+
+void put_num(int num)
+{
+	if (num / 10 > 0)
+		put_num(num / 10);
+	ft_put_char(num % 10 + '0');
+}
+
+int main (int argc, char **argv)
+{
+	if (argc == 2)
+	{
+		int mult = 1;
+		char mult_str[] = "0\0";
+		int input_c = 0;
+		int input_num;
+		int res = 0;
+
+		while (mult < 10)
+		{
+			mult_str[0] = mult + '0'; 
+			write(1, mult_str, 1);
+			write(1, " x ", 3);
+			while(argv[1][input_c])
+				input_c++;
+			write(1, argv[1], input_c);
+			write(1, " = ", 3);
+			input_num = ft_atoi(argv[1]);
+			res = mult * input_num;
+			put_num(res);
+			write (1, "\n", 1);
+			mult++;
+		}
+	}
+	else
+		write (1, "\n", 1);
+	return (0);
+}
